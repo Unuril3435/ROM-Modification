@@ -1,0 +1,10 @@
+jp $0x3FD2 -> C3 D2 3F
+-------------------------
+ld hl, 0x83E1 -> 21 E1 83
+ld (hl),0x99 -> 36 99
+ld hl, $B000 -> 21 00 B0
+jp $0x02BF -> C3 BF 02
+xxxxxxxxxxxxxxxxxxxxxxxxx
+froggers
+ -> ram: 0x8000-0x87ff
+  -> credits: 0x83E1

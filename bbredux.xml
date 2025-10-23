@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<!DOCTYPE mame [
+<!ELEMENT mame (machine+)>
+	<!ATTLIST mame build CDATA #IMPLIED>
+	<!ATTLIST mame debug (yes|no) "no">
+	<!ATTLIST mame mameconfig CDATA #REQUIRED>
+	<!ELEMENT machine (description, year?, manufacturer?, biosset*, rom*, disk*, device_ref*, sample*, chip*, display*, sound?, input?, dipswitch*, configuration*, port*, adjuster*, driver?, feature*, device*, slot*, softwarelist*, ramoption*)>
+		<!ATTLIST machine name CDATA #REQUIRED>
+		<!ATTLIST machine sourcefile CDATA #IMPLIED>
+		<!ATTLIST machine isbios (yes|no) "no">
+		<!ATTLIST machine isdevice (yes|no) "no">
+		<!ATTLIST machine ismechanical (yes|no) "no">
+		<!ATTLIST machine runnable (yes|no) "yes">
+		<!ATTLIST machine cloneof CDATA #IMPLIED>
+		<!ATTLIST machine romof CDATA #IMPLIED>
+		<!ATTLIST machine sampleof CDATA #IMPLIED>
+		<!ELEMENT description (#PCDATA)>
+		<!ELEMENT year (#PCDATA)>
+		<!ELEMENT manufacturer (#PCDATA)>
+		<!ELEMENT biosset EMPTY>
+			<!ATTLIST biosset name CDATA #REQUIRED>
+			<!ATTLIST biosset description CDATA #REQUIRED>
+			<!ATTLIST biosset default (yes|no) "no">
+		<!ELEMENT rom EMPTY>
+			<!ATTLIST rom name CDATA #REQUIRED>
+			<!ATTLIST rom bios CDATA #IMPLIED>
+			<!ATTLIST rom size CDATA #REQUIRED>
+			<!ATTLIST rom crc CDATA #IMPLIED>
+			<!ATTLIST rom sha1 CDATA #IMPLIED>
+			<!ATTLIST rom merge CDATA #IMPLIED>
+			<!ATTLIST rom region CDATA #IMPLIED>
+			<!ATTLIST rom offset CDATA #IMPLIED>
+			<!ATTLIST rom status (baddump|nodump|good) "good">
+			<!ATTLIST rom optional (yes|no) "no">
+		<!ELEMENT disk EMPTY>
+			<!ATTLIST disk name CDATA #REQUIRED>
+			<!ATTLIST disk sha1 CDATA #IMPLIED>
+			<!ATTLIST disk merge CDATA #IMPLIED>
+			<!ATTLIST disk region CDATA #IMPLIED>
+			<!ATTLIST disk index CDATA #IMPLIED>
+			<!ATTLIST disk writable (yes|no) "no">
+			<!ATTLIST disk status (baddump|nodump|good) "good">
+			<!ATTLIST disk optional (yes|no) "no">
+		<!ELEMENT device_ref EMPTY>
+			<!ATTLIST device_ref name CDATA #REQUIRED>
+		<!ELEMENT sample EMPTY>
+			<!ATTLIST sample name CDATA #REQUIRED>
+		<!ELEMENT chip EMPTY>
+			<!ATTLIST chip name CDATA #REQUIRED>
+			<!ATTLIST chip tag CDATA #IMPLIED>
+			<!ATTLIST chip type (cpu|audio) #REQUIRED>
+			<!ATTLIST chip clock CDATA #IMPLIED>
+		<!ELEMENT display EMPTY>
+			<!ATTLIST display tag CDATA #IMPLIED>
+			<!ATTLIST display type (raster|vector|lcd|svg|unknown) #REQUIRED>
+			<!ATTLIST display rotate (0|90|180|270) #IMPLIED>
+			<!ATTLIST display flipx (yes|no) "no">
+			<!ATTLIST display width CDATA #IMPLIED>
+			<!ATTLIST display height CDATA #IMPLIED>
+			<!ATTLIST display refresh CDATA #REQUIRED>
+			<!ATTLIST display pixclock CDATA #IMPLIED>
+			<!ATTLIST display htotal CDATA #IMPLIED>
+			<!ATTLIST display hbend CDATA #IMPLIED>
+			<!ATTLIST display hbstart CDATA #IMPLIED>
+			<!ATTLIST display vtotal CDATA #IMPLIED>
+			<!ATTLIST display vbend CDATA #IMPLIED>
+			<!ATTLIST display vbstart CDATA #IMPLIED>
+		<!ELEMENT sound EMPTY>
+			<!ATTLIST sound channels CDATA #REQUIRED>
+		<!ELEMENT condition EMPTY>
+			<!ATTLIST condition tag CDATA #REQUIRED>
+			<!ATTLIST condition mask CDATA #REQUIRED>
+			<!ATTLIST condition relation (eq|ne|gt|le|lt|ge) #REQUIRED>
+			<!ATTLIST condition value CDATA #REQUIRED>
+		<!ELEMENT input (control*)>
+			<!ATTLIST input service (yes|no) "no">
+			<!ATTLIST input tilt (yes|no) "no">
+			<!ATTLIST input players CDATA #REQUIRED>
+			<!ATTLIST input coins CDATA #IMPLIED>
+			<!ELEMENT control EMPTY>
+				<!ATTLIST control type CDATA #REQUIRED>
+				<!ATTLIST control player CDATA #IMPLIED>
+				<!ATTLIST control buttons CDATA #IMPLIED>
+				<!ATTLIST control reqbuttons CDATA #IMPLIED>
+				<!ATTLIST control minimum CDATA #IMPLIED>
+				<!ATTLIST control maximum CDATA #IMPLIED>
+				<!ATTLIST control sensitivity CDATA #IMPLIED>
+				<!ATTLIST control keydelta CDATA #IMPLIED>
+				<!ATTLIST control reverse (yes|no) "no">
+				<!ATTLIST control ways CDATA #IMPLIED>
+				<!ATTLIST control ways2 CDATA #IMPLIED>
+				<!ATTLIST control ways3 CDATA #IMPLIED>
+		<!ELEMENT dipswitch (condition?, diplocation*, dipvalue*)>
+			<!ATTLIST dipswitch name CDATA #REQUIRED>
+			<!ATTLIST dipswitch tag CDATA #REQUIRED>
+			<!ATTLIST dipswitch mask CDATA #REQUIRED>
+			<!ELEMENT diplocation EMPTY>
+				<!ATTLIST diplocation name CDATA #REQUIRED>
+				<!ATTLIST diplocation number CDATA #REQUIRED>
+				<!ATTLIST diplocation inverted (yes|no) "no">
+			<!ELEMENT dipvalue (condition?)>
+				<!ATTLIST dipvalue name CDATA #REQUIRED>
+				<!ATTLIST dipvalue value CDATA #REQUIRED>
+				<!ATTLIST dipvalue default (yes|no) "no">
+		<!ELEMENT configuration (condition?, conflocation*, confsetting*)>
+			<!ATTLIST configuration name CDATA #REQUIRED>
+			<!ATTLIST configuration tag CDATA #REQUIRED>
+			<!ATTLIST configuration mask CDATA #REQUIRED>
+			<!ELEMENT conflocation EMPTY>
+				<!ATTLIST conflocation name CDATA #REQUIRED>
+				<!ATTLIST conflocation number CDATA #REQUIRED>
+				<!ATTLIST conflocation inverted (yes|no) "no">
+			<!ELEMENT confsetting (condition?)>
+				<!ATTLIST confsetting name CDATA #REQUIRED>
+				<!ATTLIST confsetting value CDATA #REQUIRED>
+				<!ATTLIST confsetting default (yes|no) "no">
+		<!ELEMENT port (analog*)>
+			<!ATTLIST port tag CDATA #REQUIRED>
+			<!ELEMENT analog EMPTY>
+				<!ATTLIST analog mask CDATA #REQUIRED>
+		<!ELEMENT adjuster (condition?)>
+			<!ATTLIST adjuster name CDATA #REQUIRED>
+			<!ATTLIST adjuster default CDATA #REQUIRED>
+		<!ELEMENT driver EMPTY>
+			<!ATTLIST driver status (good|imperfect|preliminary) #REQUIRED>
+			<!ATTLIST driver emulation (good|imperfect|preliminary) #REQUIRED>
+			<!ATTLIST driver cocktail (good|imperfect|preliminary) #IMPLIED>
+			<!ATTLIST driver savestate (supported|unsupported) #REQUIRED>
+			<!ATTLIST driver requiresartwork (yes|no) "no">
+			<!ATTLIST driver unofficial (yes|no) "no">
+			<!ATTLIST driver nosoundhardware (yes|no) "no">
+			<!ATTLIST driver incomplete (yes|no) "no">
+		<!ELEMENT feature EMPTY>
+			<!ATTLIST feature type (protection|timing|graphics|palette|sound|capture|camera|microphone|controls|keyboard|mouse|media|disk|printer|tape|punch|drum|rom|comms|lan|wan) #REQUIRED>
+			<!ATTLIST feature status (unemulated|imperfect) #IMPLIED>
+			<!ATTLIST feature overall (unemulated|imperfect) #IMPLIED>
+		<!ELEMENT device (instance?, extension*)>
+			<!ATTLIST device type CDATA #REQUIRED>
+			<!ATTLIST device tag CDATA #IMPLIED>
+			<!ATTLIST device fixed_image CDATA #IMPLIED>
+			<!ATTLIST device mandatory CDATA #IMPLIED>
+			<!ATTLIST device interface CDATA #IMPLIED>
+			<!ELEMENT instance EMPTY>
+				<!ATTLIST instance name CDATA #REQUIRED>
+				<!ATTLIST instance briefname CDATA #REQUIRED>
+			<!ELEMENT extension EMPTY>
+				<!ATTLIST extension name CDATA #REQUIRED>
+		<!ELEMENT slot (slotoption*)>
+			<!ATTLIST slot name CDATA #REQUIRED>
+			<!ELEMENT slotoption EMPTY>
+				<!ATTLIST slotoption name CDATA #REQUIRED>
+				<!ATTLIST slotoption devname CDATA #REQUIRED>
+				<!ATTLIST slotoption default (yes|no) "no">
+		<!ELEMENT softwarelist EMPTY>
+			<!ATTLIST softwarelist tag CDATA #REQUIRED>
+			<!ATTLIST softwarelist name CDATA #REQUIRED>
+			<!ATTLIST softwarelist status (original|compatible) #REQUIRED>
+			<!ATTLIST softwarelist filter CDATA #IMPLIED>
+		<!ELEMENT ramoption (#PCDATA)>
+			<!ATTLIST ramoption name CDATA #REQUIRED>
+			<!ATTLIST ramoption default CDATA #IMPLIED>
+]>
+
+<mame build="0.264 (unknown)" debug="no" mameconfig="10">
+	<machine name="bbredux" sourcefile="taito/bublbobl.cpp" cloneof="bublbobl" romof="bublbobl">
+		<description>Bubble Bobble ('bootleg redux' hack for Bobble Bobble PCB)</description>
+		<year>2013</year>
+		<manufacturer>bootleg (Punji)</manufacturer>
+		<rom name="redux_bb3" size="32768" crc="d51de9f3" sha1="dc6bc93692145563a88c146eeb1d0361e25af840" region="maincpu" offset="0"/>
+		<rom name="redux_bb5" size="32768" crc="d29d3444" sha1="3db694a6ba2ba2ed85d31c2bc4c7c94911b99b85" region="maincpu" offset="10000"/>
+		<rom name="redux_bb4" size="32768" crc="984149bd" sha1="9a0f96eee038712277f652545a343587f711b9aa" region="maincpu" offset="18000"/>
+		<rom name="a78-08.37" merge="a78-08.37" size="32768" crc="ae11a07b" sha1="af7a335c8da637103103cc274e077f123908ebb7" region="subcpu" offset="0"/>
+		<rom name="a78-07.46" merge="a78-07.46" size="32768" crc="4f9a26e8" sha1="3105b34b88a7134493c2b3f584729f8b0407a011" region="audiocpu" offset="0"/>
+		<rom name="a78-09.12" merge="a78-09.12" size="32768" crc="20358c22" sha1="2297af6c53d5807bf90a8e081075b8c72a994fc5" region="gfx1" offset="0"/>
+		<rom name="a78-10.13" merge="a78-10.13" size="32768" crc="930168a9" sha1="fd358c3c3b424bca285f67a1589eb98a345ff670" region="gfx1" offset="8000"/>
+		<rom name="a78-11.14" merge="a78-11.14" size="32768" crc="9773e512" sha1="33c1687ee575d66bf0e98add45d06da827813765" region="gfx1" offset="10000"/>
+		<rom name="a78-12.15" merge="a78-12.15" size="32768" crc="d045549b" sha1="0c12077d3ddc2ce6aa45a0224ad5540f3f218446" region="gfx1" offset="18000"/>
+		<rom name="a78-13.16" merge="a78-13.16" size="32768" crc="d0af35c5" sha1="c5a89f4d73acc0db86654540b3abfd77b3757db5" region="gfx1" offset="20000"/>
+		<rom name="a78-14.17" merge="a78-14.17" size="32768" crc="7b5369a8" sha1="1307b26d80e6f36ebe6c442bebec41d20066eaf9" region="gfx1" offset="28000"/>
+		<rom name="a78-15.30" merge="a78-15.30" size="32768" crc="6b61a413" sha1="44eddf12fb46fceca2addbe6da929aaea7636b13" region="gfx1" offset="40000"/>
+		<rom name="a78-16.31" merge="a78-16.31" size="32768" crc="b5492d97" sha1="d5b045e3ebaa44809757a4220cefb3c6815470da" region="gfx1" offset="48000"/>
+		<rom name="a78-17.32" merge="a78-17.32" size="32768" crc="d69762d5" sha1="3326fef4e0bd86681a3047dc11886bb171ecb609" region="gfx1" offset="50000"/>
+		<rom name="a78-18.33" merge="a78-18.33" size="32768" crc="9f243b68" sha1="32dce8d311a4be003693182a999e4053baa6bb0a" region="gfx1" offset="58000"/>
+		<rom name="a78-19.34" merge="a78-19.34" size="32768" crc="66e9438c" sha1="b94e62b6fbe7f4e08086d0365afc5cff6e0ccafd" region="gfx1" offset="60000"/>
+		<rom name="a78-20.35" merge="a78-20.35" size="32768" crc="9ef863ad" sha1="29f91b5a3765e4d6e6c3382db1d8d8297b6e56c8" region="gfx1" offset="68000"/>
+		<rom name="a71-25.41" merge="a71-25.41" size="256" crc="2d0f8545" sha1="089c31e2f614145ef2743164f7b52ae35bc06808" region="proms" offset="0"/>
+		<rom name="pal16r4.u36" size="260" crc="22fe26ac" sha1="bbbfcbe6faded4af7ceec57b800297c054a997da" region="plds" offset="0"/>
+		<rom name="pal16l8.u38" size="260" crc="c02d9663" sha1="5d23cfd96f072981fd5fcf0dd7e98459da58b662" region="plds" offset="200"/>
+		<rom name="pal16l8.u4" size="260" crc="077d20a8" sha1="8e568ffd6f66c3dd61708dd0f3be9c2ed488ae4b" region="plds" offset="400"/>
+		<device_ref name="z80"/>
+		<device_ref name="z80"/>
+		<device_ref name="z80"/>
+		<device_ref name="watchdog"/>
+		<device_ref name="screen"/>
+		<device_ref name="gfxdecode"/>
+		<device_ref name="palette"/>
+		<device_ref name="speaker"/>
+		<device_ref name="ipt_merge_any_hi"/>
+		<device_ref name="ipt_merge_all_hi"/>
+		<device_ref name="generic_latch_8"/>
+		<device_ref name="generic_latch_8"/>
+		<device_ref name="ym2203"/>
+		<device_ref name="ym3526"/>
+		<chip type="cpu" tag="maincpu" name="Zilog Z80" clock="6000000"/>
+		<chip type="cpu" tag="subcpu" name="Zilog Z80" clock="6000000"/>
+		<chip type="cpu" tag="audiocpu" name="Zilog Z80" clock="3000000"/>
+		<chip type="audio" tag="mono" name="Speaker"/>
+		<chip type="audio" tag="ym2203" name="YM2203 OPN" clock="3000000"/>
+		<chip type="audio" tag="ym3526" name="YM3526 OPL" clock="3000000"/>
+		<display tag="screen" type="raster" rotate="0" width="256" height="224" refresh="59.185606" pixclock="6000000" htotal="384" hbend="0" hbstart="256" vtotal="264" vbend="16" vbstart="240" />
+		<sound channels="1"/>
+		<input players="2" coins="2" tilt="yes">
+			<control type="joy" player="1" buttons="2" ways="2"/>
+			<control type="joy" player="2" buttons="2" ways="2"/>
+		</input>
+		<dipswitch name="Flip Screen" tag="DSW0" mask="2">
+			<dipvalue name="Off" value="2" default="yes"/>
+			<dipvalue name="On" value="0"/>
+		</dipswitch>
+		<dipswitch name="Mode" tag="DSW0" mask="5">
+			<dipvalue name="Game, English" value="4" default="yes"/>
+			<dipvalue name="Game, Japanese" value="5"/>
+			<dipvalue name="Test (Grid and Inputs)" value="1"/>
+			<dipvalue name="Test (RAM and Sound)" value="0"/>
+		</dipswitch>
+		<dipswitch name="Demo Sounds" tag="DSW0" mask="8">
+			<dipvalue name="Off" value="0"/>
+			<dipvalue name="On" value="8" default="yes"/>
+		</dipswitch>
+		<dipswitch name="Coin A" tag="DSW0" mask="48">
+			<dipvalue name="2 Coins/1 Credit" value="16"/>
+			<dipvalue name="1 Coin/1 Credit" value="48" default="yes"/>
+			<dipvalue name="2 Coins/3 Credits" value="0"/>
+			<dipvalue name="1 Coin/2 Credits" value="32"/>
+		</dipswitch>
+		<dipswitch name="Coin B" tag="DSW0" mask="192">
+			<dipvalue name="2 Coins/1 Credit" value="64"/>
+			<dipvalue name="1 Coin/1 Credit" value="192" default="yes"/>
+			<dipvalue name="2 Coins/3 Credits" value="0"/>
+			<dipvalue name="1 Coin/2 Credits" value="128"/>
+		</dipswitch>
+		<dipswitch name="Difficulty" tag="DSW1" mask="3">
+			<dipvalue name="Easy" value="2"/>
+			<dipvalue name="Normal" value="3" default="yes"/>
+			<dipvalue name="Hard" value="1"/>
+			<dipvalue name="Very Hard" value="0"/>
+		</dipswitch>
+		<dipswitch name="Bonus Life" tag="DSW1" mask="12">
+			<dipvalue name="20K 80K 300K" value="8"/>
+			<dipvalue name="30K 100K 400K" value="12" default="yes"/>
+			<dipvalue name="40K 200K 500K" value="4"/>
+			<dipvalue name="50K 250K 500K" value="0"/>
+		</dipswitch>
+		<dipswitch name="Lives" tag="DSW1" mask="48">
+			<dipvalue name="1" value="16"/>
+			<dipvalue name="2" value="0"/>
+			<dipvalue name="3" value="48" default="yes"/>
+			<dipvalue name="5" value="32"/>
+		</dipswitch>
+		<dipswitch name="Monster Speed" tag="DSW1" mask="192">
+			<dipvalue name="Normal" value="0" default="yes"/>
+			<dipvalue name="Medium" value="64"/>
+			<dipvalue name="High" value="128"/>
+			<dipvalue name="Very High" value="192"/>
+		</dipswitch>
+		<port tag=":DSW0">
+		</port>
+		<port tag=":DSW1">
+		</port>
+		<port tag=":IN0">
+		</port>
+		<port tag=":IN1">
+		</port>
+		<driver status="good" emulation="good" savestate="supported"/>
+	</machine>
+	<machine name="generic_latch_8" sourcefile="devices/machine/gen_latch.cpp" isdevice="yes" runnable="no">
+		<description>Generic 8-bit latch</description>
+	</machine>
+	<machine name="gfxdecode" sourcefile="emu/drawgfx.cpp" isdevice="yes" runnable="no">
+		<description>gfxdecode</description>
+	</machine>
+	<machine name="ipt_merge_all_hi" sourcefile="devices/machine/input_merger.cpp" isdevice="yes" runnable="no">
+		<description>Input Merger (all high)</description>
+	</machine>
+	<machine name="ipt_merge_any_hi" sourcefile="devices/machine/input_merger.cpp" isdevice="yes" runnable="no">
+		<description>Input Merger (any high)</description>
+	</machine>
+	<machine name="palette" sourcefile="emu/emupal.cpp" isdevice="yes" runnable="no">
+		<description>palette</description>
+	</machine>
+	<machine name="screen" sourcefile="emu/screen.cpp" isdevice="yes" runnable="no">
+		<description>Video Screen</description>
+	</machine>
+	<machine name="speaker" sourcefile="emu/speaker.cpp" isdevice="yes" runnable="no">
+		<description>Speaker</description>
+		<sound channels="1"/>
+	</machine>
+	<machine name="watchdog" sourcefile="devices/machine/watchdog.cpp" isdevice="yes" runnable="no">
+		<description>Watchdog Timer</description>
+	</machine>
+	<machine name="ym2203" sourcefile="devices/sound/ymopn.cpp" isdevice="yes" runnable="no">
+		<description>YM2203 OPN</description>
+		<sound channels="0"/>
+	</machine>
+	<machine name="ym3526" sourcefile="devices/sound/ymopl.cpp" isdevice="yes" runnable="no">
+		<description>YM3526 OPL</description>
+		<sound channels="0"/>
+	</machine>
+	<machine name="z80" sourcefile="devices/cpu/z80/z80.cpp" isdevice="yes" runnable="no">
+		<description>Zilog Z80</description>
+	</machine>
+</mame>
